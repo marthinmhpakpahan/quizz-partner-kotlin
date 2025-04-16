@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "422199884480",
+    "firebase_url": "https://quizz-partner-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "quizz-partner",
+    "storage_bucket": "quizz-partner.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422199884480:android:d95da2a09cfd9b14370b25",
+        "android_client_info": {
+          "package_name": "com.quizzpartner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCI-BVMqMVstUiqFjq7BwP7VNJAuXHmCc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

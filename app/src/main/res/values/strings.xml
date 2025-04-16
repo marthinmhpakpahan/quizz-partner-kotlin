@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Quizz Partner</string>
+    <string name="label_button_login">LOGIN</string>
+    <string name="label_button_register">DAFTAR</string>
+    <string name="content_description_image_logo">Image Logo</string>
+</resources>

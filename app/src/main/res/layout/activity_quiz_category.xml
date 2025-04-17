@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvJudulKategori"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pilih Kategori Kuis"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Card-style buttons for each category -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:background="@drawable/retro_button"
+            android:id="@+id/btnPerjanjianLama"
+            android:paddingVertical="10dp"
+            android:textSize="18dp"
+            android:tag="perjanjian_lama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📖 Perjanjian Lama"
+            android:layout_marginBottom="12dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:background="@drawable/retro_button"
+            android:id="@+id/btnPerjanjianBaru"
+            android:paddingVertical="10dp"
+            android:textSize="18dp"
+            android:tag="perjanjian_baru"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📖 Perjanjian Baru"
+            android:layout_marginBottom="12dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:background="@drawable/retro_button"
+            android:id="@+id/btnTokohAlkitab"
+            android:paddingVertical="10dp"
+            android:textSize="18dp"
+            android:tag="tokoh_alkitab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🧍 Tokoh Alkitab"
+            android:layout_marginBottom="12dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:background="@drawable/retro_button"
+            android:id="@+id/btnAyatPenting"
+            android:paddingVertical="10dp"
+            android:textSize="18dp"
+            android:tag="ayat_penting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🔑 Ayat Penting"
+            android:layout_marginBottom="12dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:background="@drawable/retro_button"
+            android:id="@+id/btnKuisAcak"
+            android:paddingVertical="10dp"
+            android:textSize="18dp"
+            android:tag="kuis_acak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🎲 Kuis Acak"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Optional: Slider or Spinner for jumlah soal -->
+        <TextView
+            android:id="@+id/tvJumlahSoal"
+            android:paddingVertical="10dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jumlah Soal: 10"
+            android:layout_marginTop="16dp" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="4"
+            android:rowCount="1"
+            android:layout_marginBottom="16dp">
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_margin="5dp"
+                android:background="@drawable/retro_button"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:text="10"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:id="@+id/btnJumlah10" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_margin="5dp"
+                android:background="@drawable/retro_button"
+                android:layout_columnWeight="1"
+                android:id="@+id/btnJumlah20"
+                android:text="20"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:layout_width="0dp"
+                android:layout_height="80dp" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_margin="5dp"
+                android:background="@drawable/retro_button"
+                android:layout_columnWeight="1"
+                android:id="@+id/btnJumlah30"
+                android:text="30"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:layout_width="0dp"
+                android:layout_height="80dp" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_margin="5dp"
+                android:background="@drawable/retro_button"
+                android:layout_columnWeight="1"
+                android:id="@+id/btnJumlah40"
+                android:text="40"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:layout_width="0dp"
+                android:layout_height="80dp" />
+
+        </GridLayout>
+
+        <Button
+            android:id="@+id/btnMulai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:textSize="18dp"
+            android:text="Mulai Kuis"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</ScrollView>

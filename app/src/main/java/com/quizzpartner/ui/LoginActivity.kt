@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.quizzpartner.data.UserData
 import com.quizzpartner.databinding.ActivityLoginBinding
+import com.quizzpartner.util.SessionManager
 
 class LoginActivity : AppCompatActivity() {
 
@@ -45,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun isLoggedIn() {
-        val userId = sharedPreferences.getString("id", "")
+        val userId = SessionManager.getSession(this@LoginActivity, "users", "id")
         if (userId.toString().isNotEmpty()) {
             startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
             finish()

@@ -1,22 +1,209 @@
 package com.quizzpartner.ui
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.quizzpartner.R
+import com.quizzpartner.data.QuizAttemptData
+import com.quizzpartner.data.QuizQuestionData
+import com.quizzpartner.data.QuizResultData
 import com.quizzpartner.databinding.ActivityQuizBinding
-import com.quizzpartner.databinding.ActivityQuizCategoryBinding
+import com.quizzpartner.util.SessionManager
+import kotlin.math.max
+import kotlin.random.Random
 
 class QuizActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityQuizBinding
+
+    var indexQuestion = 0
+    var maxQuestion = 0
+    var correctAnswer = 0
+    var quizCategory = ""
+    var listQuestions : List<QuizQuestionData>? = emptyList()
+    var listQuizAttempt : MutableList<QuizAttemptData>? = mutableListOf()
+    var quizResultData : QuizResultData = QuizResultData()
+
+    private lateinit var firebaseDatabase: FirebaseDatabase
+    private lateinit var databaseReference: DatabaseReference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        firebaseDatabase = FirebaseDatabase.getInstance()
+        databaseReference = firebaseDatabase.reference.child("user_attempts")
+
+        maxQuestion = 5 //intent.extras?.getInt("totalQuestion") ?: 10
+        quizCategory = intent.extras?.getString("quizCategory") ?: "ayat_penting"
+
+        quizResultData.totalQuestion = maxQuestion
+        quizResultData.quizCategory = quizCategory
+
+        fetchRandomQuizQuestions(maxQuestion) { questions ->
+            if (questions.isNotEmpty()) {
+                // Pass to adapter, UI, or ViewModel
+                Log.d("Quiz", "Loaded ${questions.size} questions")
+                listQuestions = questions
+                Log.d("QuizSize", "QuizSize : ${listQuestions?.size}")
+                setupQuestion()
+            } else {
+                Toast.makeText(this, "Gagal memuat soal.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    fun resetButtonState() {
+        val choiceButtons = arrayOf(
+            binding.btnChoice1, binding.btnChoice2, binding.btnChoice3, binding.btnChoice4
+        )
+
+        for (choiceButton in choiceButtons) {
+            choiceButton.setBackgroundResource(R.drawable.choice_button_default)
+            choiceButton.setTextColor(getColor(R.color.black))
+        }
+
+        binding.tvNextQuestionCaption.visibility = View.INVISIBLE
+    }
+
+    fun setupQuestion() {
+        resetButtonState()
+        if (listQuestions != null && listQuestions?.size!! > 0) {
+            var question = listQuestions?.get(indexQuestion)
+            binding.tvQuestionNumber.text = "Pertanyaan ${indexQuestion + 1} / ${maxQuestion}"
+            if (question != null) {
+                binding.tvQuestion.text = question.question
+                binding.btnChoice1.text = question.options.get(0)
+                binding.btnChoice2.text = question.options.get(1)
+                binding.btnChoice3.text = question.options.get(2)
+                binding.btnChoice4.text = question.options.get(3)
+
+                binding.btnChoice1.setOnClickListener {
+                    validateAnswer(question.question, binding.btnChoice1.text.toString().lowercase(), question.answer)
+                }
+                binding.btnChoice2.setOnClickListener {
+                    validateAnswer(question.question, binding.btnChoice2.text.toString().lowercase(), question.answer)
+                }
+                binding.btnChoice3.setOnClickListener {
+                    validateAnswer(question.question, binding.btnChoice3.text.toString().lowercase(), question.answer)
+                }
+                binding.btnChoice4.setOnClickListener {
+                    validateAnswer(question.question, binding.btnChoice4.text.toString().lowercase(), question.answer)
+                }
+            }
+        }
+    }
+
+    fun validateAnswer(question : String, selected : String, answer : String) {
+        val choiceButtons = arrayOf(
+            binding.btnChoice1, binding.btnChoice2, binding.btnChoice3, binding.btnChoice4
+        )
+
+        for (choiceButton in choiceButtons) {
+            val textButton = choiceButton.text.toString().lowercase()
+            if (textButton.equals(selected.lowercase())) {
+                choiceButton.setBackgroundResource(R.drawable.choice_button_selected)
+                choiceButton.setTextColor(getColor(R.color.white))
+            }
+            if (textButton.equals(answer.lowercase())) {
+                choiceButton.setBackgroundResource(R.drawable.choice_button_correct)
+                choiceButton.setTextColor(getColor(R.color.white))
+            }
+            if (!textButton.equals(selected.lowercase()) && !textButton.equals(answer.lowercase())){
+                choiceButton.setBackgroundResource(R.drawable.choice_button_wrong)
+                choiceButton.setTextColor(getColor(R.color.white))
+            }
+        }
+
+        if (selected.lowercase().equals(answer.lowercase())) {
+            correctAnswer += 1
+        }
+
+        var quizAttemptData = QuizAttemptData()
+        quizAttemptData.question = question
+        quizAttemptData.answered = selected
+        quizAttemptData.correct_answer = answer
+        listQuizAttempt?.add(quizAttemptData)
+
+        indexQuestion += 1
+
+        nextQuestion()
+    }
+
+    fun nextQuestion() {
+        binding.tvNextQuestionCaption.visibility = View.VISIBLE
+        object : CountDownTimer(1000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                var second = millisUntilFinished/1000
+                binding.tvNextQuestionCaption.setText("Pertanyaan selanjutnya dalam (${second}) detik...")
+            }
+
+            override fun onFinish() {
+                if (indexQuestion == maxQuestion) {
+                    quizResultData.totalCorrectAnswer = correctAnswer
+                    saveResultToDatabase()
+                    var intent = Intent(this@QuizActivity, QuizResultActivity::class.java)
+                    intent.putExtra("QuizResultData", quizResultData)
+                    startActivity(intent)
+                    finish()
+                    return
+                }
+                setupQuestion()
+            }
+        }.start()
+    }
+
+    fun fetchRandomQuizQuestions(limit: Int, callback: (List<QuizQuestionData>) -> Unit) {
+        val database = FirebaseDatabase.getInstance().reference
+        val quizRef = database.child("questions/ayat_penting")
+
+        quizRef.get().addOnSuccessListener { dataSnapshot ->
+            val allQuestions = mutableListOf<QuizQuestionData>()
+
+            for (questionSnapshot in dataSnapshot.children) {
+                val question = questionSnapshot.getValue(QuizQuestionData::class.java)
+                if (question != null) {
+                    allQuestions.add(question)
+                }
+            }
+
+            // Shuffle and pick 20
+            Log.d("QuizActivity", "Jumlah soal : ${limit}")
+            val randomQuestions = allQuestions.shuffled(Random(System.currentTimeMillis())).take(limit)
+            callback(randomQuestions)
+        }.addOnFailureListener {
+            it.printStackTrace()
+            callback(emptyList())
+        }
+    }
+
+    fun saveResultToDatabase() {
+        Log.d("QuizActivity.saveResultToDatabase", "registerUser invoked!")
+        val id = databaseReference.push().key
+        val userId = SessionManager.getSession(this@QuizActivity, "user", "id")
+        quizResultData.id = id?: ""
+        quizResultData.userId = userId
+        databaseReference.child(id!!).setValue(quizResultData)
+
+        Log.d("saveResultToDatabase", "listQuizAttempt size : ${listQuizAttempt!!.size.toString()}")
+        for (item in listQuizAttempt!!) {
+            databaseReference = firebaseDatabase.reference.child("user_attempts").child(id).child("records")
+            val id = databaseReference.push().key
+            Log.d("saveResultToDatabase", item.toString())
+            databaseReference.child(id!!).setValue(item)
+        }
     }
 }

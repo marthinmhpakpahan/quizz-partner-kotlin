@@ -2,14 +2,9 @@ package com.quizzpartner.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.SeekBar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.quizzpartner.R
-import com.quizzpartner.databinding.ActivityDashboardBinding
 import com.quizzpartner.databinding.ActivityQuizCategoryBinding
 
 class QuizCategoryActivity : AppCompatActivity() {
@@ -59,8 +54,8 @@ class QuizCategoryActivity : AppCompatActivity() {
 
         binding.btnMulai.setOnClickListener {
             val intent = Intent(this@QuizCategoryActivity, QuizActivity::class.java)
-            intent.putExtra("jumlah_soal", jumlahSoal)
-            intent.putExtra("category_soal", categorySoal)
+            intent.putExtra("totalQuestion", jumlahSoal)
+            intent.putExtra("quizCategory", categorySoal)
             startActivity(intent)
         }
     }

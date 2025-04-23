@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.transition.Visibility
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -34,6 +35,8 @@ class QuizActivity : AppCompatActivity() {
     var listQuizAttempt : MutableList<QuizAttemptData>? = mutableListOf()
     var quizResultData : QuizResultData = QuizResultData()
 
+    var timer = 200
+
     private lateinit var firebaseDatabase: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
 
@@ -44,10 +47,12 @@ class QuizActivity : AppCompatActivity() {
         binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.linearLoading.visibility = View.VISIBLE
+
         firebaseDatabase = FirebaseDatabase.getInstance()
         databaseReference = firebaseDatabase.reference.child("user_attempts")
 
-        maxQuestion = 5 //intent.extras?.getInt("totalQuestion") ?: 10
+        maxQuestion = intent.extras?.getInt("totalQuestion") ?: 10
         quizCategory = intent.extras?.getString("quizCategory") ?: "ayat_penting"
 
         quizResultData.totalQuestion = maxQuestion
@@ -64,6 +69,18 @@ class QuizActivity : AppCompatActivity() {
                 Toast.makeText(this, "Gagal memuat soal.", Toast.LENGTH_SHORT).show()
             }
         }
+
+        // SET TIMER
+        object : CountDownTimer(timer.toLong() * 1000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                var second = millisUntilFinished/1000
+                binding.tvCountdownTimer.setText("Sisa Waktu : ${second}")
+            }
+
+            override fun onFinish() {
+                finishQuiz()
+            }
+        }.start()
     }
 
     fun resetButtonState() {
@@ -72,7 +89,7 @@ class QuizActivity : AppCompatActivity() {
         )
 
         for (choiceButton in choiceButtons) {
-            choiceButton.setBackgroundResource(R.drawable.choice_button_default)
+            choiceButton.setBackgroundColor(getColor(R.color.white))
             choiceButton.setTextColor(getColor(R.color.black))
         }
 
@@ -105,6 +122,7 @@ class QuizActivity : AppCompatActivity() {
                 }
             }
         }
+        binding.linearLoading.visibility = View.GONE
     }
 
     fun validateAnswer(question : String, selected : String, answer : String) {
@@ -115,15 +133,15 @@ class QuizActivity : AppCompatActivity() {
         for (choiceButton in choiceButtons) {
             val textButton = choiceButton.text.toString().lowercase()
             if (textButton.equals(selected.lowercase())) {
-                choiceButton.setBackgroundResource(R.drawable.choice_button_selected)
+                choiceButton.setBackgroundColor(getColor(R.color.accentOrange))
                 choiceButton.setTextColor(getColor(R.color.white))
             }
             if (textButton.equals(answer.lowercase())) {
-                choiceButton.setBackgroundResource(R.drawable.choice_button_correct)
+                choiceButton.setBackgroundColor(getColor(R.color.accentGreen))
                 choiceButton.setTextColor(getColor(R.color.white))
             }
             if (!textButton.equals(selected.lowercase()) && !textButton.equals(answer.lowercase())){
-                choiceButton.setBackgroundResource(R.drawable.choice_button_wrong)
+                choiceButton.setBackgroundColor(getColor(R.color.accentRed))
                 choiceButton.setTextColor(getColor(R.color.white))
             }
         }
@@ -145,25 +163,29 @@ class QuizActivity : AppCompatActivity() {
 
     fun nextQuestion() {
         binding.tvNextQuestionCaption.visibility = View.VISIBLE
-        object : CountDownTimer(1000, 1000) {
+        object : CountDownTimer(2000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 var second = millisUntilFinished/1000
-                binding.tvNextQuestionCaption.setText("Pertanyaan selanjutnya dalam (${second}) detik...")
+                binding.tvNextQuestionCaption.setText("Pertanyaan selanjutnya dalam ${second} detik...")
             }
 
             override fun onFinish() {
                 if (indexQuestion == maxQuestion) {
-                    quizResultData.totalCorrectAnswer = correctAnswer
-                    saveResultToDatabase()
-                    var intent = Intent(this@QuizActivity, QuizResultActivity::class.java)
-                    intent.putExtra("QuizResultData", quizResultData)
-                    startActivity(intent)
-                    finish()
-                    return
+                    finishQuiz()
                 }
                 setupQuestion()
             }
         }.start()
+    }
+
+    fun finishQuiz() {
+        quizResultData.totalCorrectAnswer = correctAnswer
+        saveResultToDatabase()
+        var intent = Intent(this@QuizActivity, QuizResultActivity::class.java)
+        intent.putExtra("QuizResultData", quizResultData)
+        startActivity(intent)
+        finish()
+        return
     }
 
     fun fetchRandomQuizQuestions(limit: Int, callback: (List<QuizQuestionData>) -> Unit) {

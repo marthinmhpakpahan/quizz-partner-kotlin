@@ -64,12 +64,12 @@ class QuizCategoryActivity : AppCompatActivity() {
         val arrButton = arrayOf(binding.btnJumlah10, binding.btnJumlah20, binding.btnJumlah30, binding.btnJumlah40)
         for (button in arrButton) {
             if (button.text.toString().equals(total)) {
-                button.setBackgroundResource(R.drawable.retro_button_clicked)
+                button.setBackgroundColor(getColor(R.color.accentGreen))
                 button.setTextColor(getColor(R.color.white))
                 jumlahSoal = button.text.toString().toInt()
                 binding.tvJumlahSoal.text = "Jumlah Soal : ${button.text.toString()}"
             } else {
-                button.setBackgroundResource(R.drawable.retro_button)
+                button.setBackgroundColor(getColor(R.color.white))
                 button.setTextColor(getColor(R.color.black))
             }
         }
@@ -79,11 +79,11 @@ class QuizCategoryActivity : AppCompatActivity() {
         val arrButton = arrayOf(binding.btnPerjanjianLama, binding.btnPerjanjianBaru, binding.btnTokohAlkitab, binding.btnAyatPenting, binding.btnKuisAcak)
         for (button in arrButton) {
             if (button.tag.equals(category)) {
-                button.setBackgroundResource(R.drawable.retro_button_clicked)
+                button.setBackgroundColor(getColor(R.color.accentGreen))
                 button.setTextColor(getColor(R.color.white))
                 categorySoal = button.tag.toString()
             } else {
-                button.setBackgroundResource(R.drawable.retro_button)
+                button.setBackgroundColor(getColor(R.color.white))
                 button.setTextColor(getColor(R.color.black))
             }
         }

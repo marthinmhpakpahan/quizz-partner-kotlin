@@ -6,25 +6,126 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/gray200"
     tools:context=".ui.QuizResultActivity">
 
     <TextView
-        android:id="@+id/tvQuizCategory"
         android:layout_marginTop="50dp"
-        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Test Result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.button.MaterialButton
+            android:layout_centerHorizontal="true"
+            android:id="@+id/tvQuizCategory"
+            android:gravity="center"
+            app:cornerRadius="16dp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/gray500"
+            android:text="Ayat Penting"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <TextView
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="Score Anda"
+        android:textSize="25dp"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
-        android:id="@+id/tvTotalQueztion"
-        android:layout_marginTop="50dp"
-        android:padding="10dp"
+        android:id="@+id/tvScore"
+        android:textSize="130dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="-20dp"
+        android:text="80"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/tvCorrectAnswer"
-        android:layout_marginTop="50dp"
-        android:padding="10dp"
+    <LinearLayout
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/rounded_button"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="10dp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <GridLayout
+            android:rowCount="1"
+            android:columnCount="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_columnWeight="1"
+                android:id="@+id/tvCorrectAnswer"
+                android:padding="10dp"
+                android:text="4 Benar"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/accentGreen"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_columnWeight="1"
+                android:id="@+id/tvWrongAnswer"
+                android:padding="10dp"
+                android:gravity="center"
+                android:text="1 Salah"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/accentRed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+        </GridLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#DDDDDD" />
+            <TextView
+                android:layout_columnWeight="1"
+                android:id="@+id/tvTotalQueztion"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="1 Salah"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDashboard"
+            android:layout_centerHorizontal="true"
+            android:text="Dashboard"
+            android:backgroundTint="@color/accentGreen"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            android:paddingVertical="15dp"
+            android:paddingHorizontal="40dp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 
 </LinearLayout>

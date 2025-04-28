@@ -3,4 +3,10 @@
     <string name="label_button_login">LOGIN</string>
     <string name="label_button_register">DAFTAR</string>
     <string name="content_description_image_logo">Image Logo</string>
+    <string name="label_multiple_choices">Pilihan Ganda</string>
+    <string name="label_true_false">Benar / Salah</string>
+    <string name="label_fill_in_word">Isi Kata</string>
+    <string name="label_random">Soal Acak</string>
+    <string name="label_ayat_penting">Ayat Penting</string>
+    <string name="label_tokoh_alkitab">Tokoh Alkitab</string>
 </resources>

@@ -8,29 +8,26 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.transition.Visibility
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.quizzpartner.R
 import com.quizzpartner.data.QuizAttemptData
 import com.quizzpartner.data.QuizQuestionData
 import com.quizzpartner.data.QuizResultData
 import com.quizzpartner.databinding.ActivityQuizBinding
 import com.quizzpartner.util.SessionManager
-import kotlin.math.max
 import kotlin.random.Random
 
-class QuizActivity : AppCompatActivity() {
+class QuizMultipleChoiceActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityQuizBinding
 
     var indexQuestion = 0
     var maxQuestion = 0
     var correctAnswer = 0
+    var incorrectAnswer = 0
     var quizCategory = ""
+    var quizTopic = ""
     var listQuestions : List<QuizQuestionData>? = emptyList()
     var listQuizAttempt : MutableList<QuizAttemptData>? = mutableListOf()
     var quizResultData : QuizResultData = QuizResultData()
@@ -53,10 +50,12 @@ class QuizActivity : AppCompatActivity() {
         databaseReference = firebaseDatabase.reference.child("user_attempts")
 
         maxQuestion = intent.extras?.getInt("totalQuestion") ?: 10
-        quizCategory = intent.extras?.getString("quizCategory") ?: "ayat_penting"
+        quizCategory = intent.extras?.getString("quizCategory") ?: "Pilihan Ganda"
+        quizTopic = intent.extras?.getString("quizTopic") ?: "Ayat Penting"
 
         quizResultData.totalQuestion = maxQuestion
         quizResultData.quizCategory = quizCategory
+        quizResultData.quizTopic = quizTopic
 
         fetchRandomQuizQuestions(maxQuestion) { questions ->
             if (questions.isNotEmpty()) {
@@ -74,6 +73,7 @@ class QuizActivity : AppCompatActivity() {
         object : CountDownTimer(timer.toLong() * 1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 var second = millisUntilFinished/1000
+                quizResultData.timeNeeded = timer - second.toInt()
                 binding.tvCountdownTimer.setText("Sisa Waktu : ${second}")
             }
 
@@ -109,16 +109,16 @@ class QuizActivity : AppCompatActivity() {
                 binding.btnChoice4.text = question.options.get(3)
 
                 binding.btnChoice1.setOnClickListener {
-                    validateAnswer(question.question, binding.btnChoice1.text.toString().lowercase(), question.answer)
+                    validateAnswer(question.question, binding.btnChoice1.text.toString(), question.answer)
                 }
                 binding.btnChoice2.setOnClickListener {
-                    validateAnswer(question.question, binding.btnChoice2.text.toString().lowercase(), question.answer)
+                    validateAnswer(question.question, binding.btnChoice2.text.toString(), question.answer)
                 }
                 binding.btnChoice3.setOnClickListener {
-                    validateAnswer(question.question, binding.btnChoice3.text.toString().lowercase(), question.answer)
+                    validateAnswer(question.question, binding.btnChoice3.text.toString(), question.answer)
                 }
                 binding.btnChoice4.setOnClickListener {
-                    validateAnswer(question.question, binding.btnChoice4.text.toString().lowercase(), question.answer)
+                    validateAnswer(question.question, binding.btnChoice4.text.toString(), question.answer)
                 }
             }
         }
@@ -148,6 +148,10 @@ class QuizActivity : AppCompatActivity() {
 
         if (selected.lowercase().equals(answer.lowercase())) {
             correctAnswer += 1
+            binding.tvTotalCorrectAnswer.text = correctAnswer.toString()
+        } else {
+            incorrectAnswer += 1
+            binding.tvTotalIncorrectAnswer.text = incorrectAnswer.toString()
         }
 
         var quizAttemptData = QuizAttemptData()
@@ -181,7 +185,7 @@ class QuizActivity : AppCompatActivity() {
     fun finishQuiz() {
         quizResultData.totalCorrectAnswer = correctAnswer
         saveResultToDatabase()
-        var intent = Intent(this@QuizActivity, QuizResultActivity::class.java)
+        var intent = Intent(this@QuizMultipleChoiceActivity, QuizResultActivity::class.java)
         intent.putExtra("QuizResultData", quizResultData)
         startActivity(intent)
         finish()
@@ -190,7 +194,7 @@ class QuizActivity : AppCompatActivity() {
 
     fun fetchRandomQuizQuestions(limit: Int, callback: (List<QuizQuestionData>) -> Unit) {
         val database = FirebaseDatabase.getInstance().reference
-        val quizRef = database.child("questions/ayat_penting")
+        val quizRef = database.child("questions/" + quizCategory + "/" + quizTopic)
 
         quizRef.get().addOnSuccessListener { dataSnapshot ->
             val allQuestions = mutableListOf<QuizQuestionData>()
@@ -215,7 +219,7 @@ class QuizActivity : AppCompatActivity() {
     fun saveResultToDatabase() {
         Log.d("QuizActivity.saveResultToDatabase", "registerUser invoked!")
         val id = databaseReference.push().key
-        val userId = SessionManager.getSession(this@QuizActivity, "user", "id")
+        val userId = SessionManager.getSession(this@QuizMultipleChoiceActivity, "user", "id")
         quizResultData.id = id?: ""
         quizResultData.userId = userId
         databaseReference.child(id!!).setValue(quizResultData)

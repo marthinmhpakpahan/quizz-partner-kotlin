@@ -22,73 +22,178 @@
             android:textStyle="bold"
             android:layout_marginBottom="16dp" />
 
-        <!-- Card-style buttons for each category -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnPerjanjianLama"
-            android:textColor="@color/black"
-            android:paddingVertical="15dp"
-            android:textSize="18dp"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp"
-            android:tag="perjanjian_lama"
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="📖 Perjanjian Lama"
-            android:layout_marginBottom="8dp" />
+            android:columnCount="2"
+            android:rowCount="2">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnPerjanjianBaru"
+            <LinearLayout
+                android:id="@+id/llMultipleChoice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="5dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/rounded_button"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:tag="@string/label_multiple_choices">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_multiple_choices" />
+
+                <TextView
+                    android:id="@+id/tvllMultipleChoice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="@string/label_multiple_choices"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llTrueFalse"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="5dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/rounded_button"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:tag="@string/label_true_false"
+                android:weightSum="1">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_true_false" />
+
+                <TextView
+                    android:id="@+id/tvllTrueFalse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="@string/label_true_false"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llFillInWord"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="5dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/rounded_button"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:tag="@string/label_fill_in_word"
+                android:weightSum="1">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_fill_in_word" />
+
+                <TextView
+                    android:id="@+id/tvllFillInWord"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="@string/label_fill_in_word"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llRandom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="5dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/rounded_button"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:tag="@string/label_random"
+                android:weightSum="1">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_dice" />
+
+                <TextView
+                    android:id="@+id/tvllRandom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="@string/label_random"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </GridLayout>
+
+        <TextView
+            android:id="@+id/tvQuizTopic"
+            android:paddingVertical="10dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
             android:textColor="@color/black"
-            android:paddingVertical="15dp"
-            android:textSize="18dp"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp"
-            android:tag="perjanjian_baru"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pilih Topik Kuis"
+            android:layout_marginTop="20dp" />
+
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="📖 Perjanjian Baru"
-            android:layout_marginBottom="8dp" />
+            android:columnCount="4"
+            android:rowCount="1">
+            <com.google.android.material.button.MaterialButton
+                android:layout_margin="5dp"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                app:strokeColor="@color/black"
+                app:cornerRadius="10dp"
+                app:strokeWidth="1dp"
+                android:text="@string/label_ayat_penting"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:id="@+id/btnAyatPenting" />
+            <com.google.android.material.button.MaterialButton
+                android:layout_margin="5dp"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                app:strokeColor="@color/black"
+                app:cornerRadius="10dp"
+                app:strokeWidth="1dp"
+                android:text="@string/label_tokoh_alkitab"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:id="@+id/btnTokohAlkitab" />
+        </GridLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnTokohAlkitab"
-            android:textColor="@color/black"
-            android:paddingVertical="15dp"
-            android:textSize="18dp"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp"
-            android:tag="tokoh_alkitab"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="🧍 Tokoh Alkitab"
-            android:layout_marginBottom="8dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAyatPenting"
-            android:textColor="@color/black"
-            android:paddingVertical="15dp"
-            android:textSize="18dp"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp"
-            android:tag="ayat_penting"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="🔑 Ayat Penting"
-            android:layout_marginBottom="8dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnKuisAcak"
-            android:textColor="@color/black"
-            android:paddingVertical="15dp"
-            android:textSize="18dp"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp"
-            android:tag="kuis_acak"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="🎲 Kuis Acak"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Optional: Slider or Spinner for jumlah soal -->
         <TextView
             android:id="@+id/tvJumlahSoal"
             android:paddingVertical="10dp"
@@ -166,10 +271,12 @@
             android:layout_height="wrap_content"
             android:paddingVertical="15dp"
             android:textSize="18dp"
-            app:cornerRadius="14dp"
+            app:cornerRadius="10dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/black"
             android:text="Mulai Kuis"
             android:layout_marginTop="24dp"
-            android:backgroundTint="#4CAF50"
-            android:textColor="#FFFFFF" />
+            android:backgroundTint="@color/gray700"
+            android:textColor="@color/white" />
     </LinearLayout>
 </ScrollView>

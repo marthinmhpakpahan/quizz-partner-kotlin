@@ -28,12 +28,13 @@ class QuizResultActivity : AppCompatActivity() {
         var totalQuestion = quizResultData?.totalQuestion.toString().toInt()
         var totalCorrectAnswer = quizResultData?.totalCorrectAnswer.toString().toInt()
         var totalScore = (totalCorrectAnswer.toFloat()/totalQuestion.toFloat()) * 100
-        var formattedCategory = quizResultData?.quizCategory?.replace("_", " ").toString()
-        binding.tvQuizCategory.text = Helper.toCamelCase(formattedCategory)
+        binding.tvQuizCategory.text = quizResultData?.quizCategory.toString()
+        binding.tvQuizTopic.text = quizResultData?.quizTopic.toString()
         binding.tvCorrectAnswer.text = totalCorrectAnswer.toString() + " Benar"
         binding.tvWrongAnswer.text = (totalQuestion - totalCorrectAnswer).toString() + " Salah"
         binding.tvTotalQueztion.text = totalQuestion.toString() + " Pertanyaan"
         binding.tvScore.text = totalScore.toInt().toString()
+        binding.tvTimeNeeded.text = quizResultData?.timeNeeded.toString() + " Detik"
 
         binding.btnDashboard.setOnClickListener {
             startActivity(Intent(this@QuizResultActivity, DashboardActivity::class.java))

@@ -10,15 +10,18 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/ic_splashcreen_logo_wrapper"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_quizz_partner_logo"
         android:supportsRtl="false"
         android:theme="@style/Theme.QuizzPartner"
         tools:targetApi="31">
         <activity
+            android:name=".ui.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.QuizResultActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.QuizActivity"
+            android:name=".ui.QuizMultipleChoiceActivity"
             android:exported="false" />
         <activity
             android:name=".ui.QuizCategoryActivity"

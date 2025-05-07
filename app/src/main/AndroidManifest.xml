@@ -15,6 +15,15 @@
         android:theme="@style/Theme.QuizzPartner"
         tools:targetApi="31">
         <activity
+            android:name=".ui.QuizRandomActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.QuizFillInWordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.QuizTrueFalseActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.ProfileActivity"
             android:exported="false" />
         <activity

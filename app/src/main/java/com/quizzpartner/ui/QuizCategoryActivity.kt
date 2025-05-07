@@ -65,7 +65,14 @@ class QuizCategoryActivity : AppCompatActivity() {
 
         binding.btnMulai.setOnClickListener {
             if (validateStartQuizButton()) {
-                val intent = Intent(this@QuizCategoryActivity, QuizMultipleChoiceActivity::class.java)
+                var intent = Intent(this@QuizCategoryActivity, QuizMultipleChoiceActivity::class.java)
+                if (quizCategory.equals(getString(R.string.label_true_false))) {
+                    intent = Intent(this@QuizCategoryActivity, QuizTrueFalseActivity::class.java)
+                } else if (quizCategory.equals(getString(R.string.label_fill_in_word))) {
+                    intent = Intent(this@QuizCategoryActivity, QuizFillInWordActivity::class.java)
+                } else if (quizCategory.equals(getString(R.string.label_random))) {
+                    intent = Intent(this@QuizCategoryActivity, QuizRandomActivity::class.java)
+                }
                 intent.putExtra("totalQuestion", jumlahSoal)
                 intent.putExtra("quizCategory", quizCategory)
                 intent.putExtra("quizTopic", quizTopic)

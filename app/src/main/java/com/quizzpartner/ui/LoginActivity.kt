@@ -46,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun isLoggedIn() {
-        val userId = SessionManager.getSession(this@LoginActivity, "users", "id")
+        val userId = SessionManager.getSession(this@LoginActivity, "user", "id")
         if (userId.toString().isNotEmpty()) {
             startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
             finish()

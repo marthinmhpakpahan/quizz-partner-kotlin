@@ -42,5 +42,9 @@ class DashboardActivity : AppCompatActivity() {
         binding.btnPengaturan.setOnClickListener {
             Toast.makeText(this@DashboardActivity, "Maaf, fitur ini belum tersedia!", Toast.LENGTH_SHORT).show()
         }
+        binding.imgAvatar.setOnClickListener {
+            startActivity(Intent(this@DashboardActivity, ProfileActivity::class.java))
+            finish()
+        }
     }
 }

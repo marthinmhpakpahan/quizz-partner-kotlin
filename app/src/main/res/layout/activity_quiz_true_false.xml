@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:paddingHorizontal="30dp"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.QuizTrueFalseActivity">
+
+    <!-- Loading Screen -->
+    <LinearLayout
+        android:id="@+id/loadingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#FFF"
+        android:visibility="gone">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loadingAnimation"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:lottie_fileName="loading_animation.json"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_loading_data"
+            android:textSize="16sp"
+            android:textColor="#666"
+            android:paddingTop="12dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:id="@+id/tvQuestionNumber"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:text="Pertanyaan 1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.button.MaterialButton
+            android:layout_centerHorizontal="true"
+            android:id="@+id/tvCountdownTimer"
+            android:gravity="center"
+            app:cornerRadius="16dp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/red"
+            android:text="Sisa Waktu : "
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:background="@drawable/rounded_button_green"
+            android:paddingHorizontal="7dp"
+            android:id="@+id/llTotalCorrect"
+            android:layout_marginHorizontal="2dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_margin="2dp"
+                android:id="@+id/tvTotalCorrectAnswer"
+                android:textStyle="bold"
+                android:text="0"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:text=" - "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:background="@drawable/rounded_button_red"
+            android:paddingHorizontal="7dp"
+            android:layout_toRightOf="@+id/llTotalCorrect"
+            android:layout_marginHorizontal="2dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_margin="2dp"
+                android:id="@+id/tvTotalIncorrectAnswer"
+                android:textStyle="bold"
+                android:text="0"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="30dp"
+        android:paddingHorizontal="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/tvQuestion"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="Sebab begitu besar kasih Allah akan dunia ini, sehingga Ia telah mengaruniakan Anak-Nya yang tunggal, supaya setiap orang yang percaya kepada-Nya tidak binasa, melainkan beroleh hidup yang kekal."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/llWrongtChoice"
+            android:paddingVertical="10dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/rounded_button"
+            android:gravity="center_horizontal"
+            android:layout_columnWeight="1"
+            android:layout_width="100dp"
+            android:orientation="vertical"
+            android:layout_height="100dp">
+            <ImageView
+                android:id="@+id/imgWrongChoice"
+                android:src="@drawable/ic_false_black"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+            <TextView
+                android:id="@+id/tvWrongChoice"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:text="SALAH"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llCorrectChoice"
+            android:paddingVertical="10dp"
+            android:background="@drawable/rounded_button"
+            android:gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:layout_columnWeight="1"
+            android:layout_width="100dp"
+            android:orientation="vertical"
+            android:layout_height="100dp">
+            <ImageView
+                android:id="@+id/imgCorrectChoice"
+                android:src="@drawable/ic_true_black"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+            <TextView
+                android:id="@+id/tvCorrectChoice"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:text="BENAR"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvNextQuestionCaption"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="Pertanyaan selanjutnya dalam (3) detik..."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

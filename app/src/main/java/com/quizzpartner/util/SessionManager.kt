@@ -12,4 +12,11 @@ object SessionManager {
         sharedPreferences = context.getSharedPreferences(sharedName, MODE_PRIVATE)
         return sharedPreferences.getString(key, "").toString()
     }
+
+    fun deleteSession(context : Context, sharedName : String) {
+        sharedPreferences = context.getSharedPreferences(sharedName, MODE_PRIVATE)
+        var editor = sharedPreferences.edit()
+        editor.clear()
+        editor.commit()
+    }
 }

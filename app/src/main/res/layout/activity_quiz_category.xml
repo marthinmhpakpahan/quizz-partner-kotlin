@@ -54,7 +54,7 @@
                     android:gravity="center"
                     android:text="@string/label_multiple_choices"
                     android:textColor="@color/black"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -85,7 +85,7 @@
                     android:gravity="center"
                     android:text="@string/label_true_false"
                     android:textColor="@color/black"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -116,7 +116,7 @@
                     android:gravity="center"
                     android:text="@string/label_fill_in_word"
                     android:textColor="@color/black"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -147,7 +147,7 @@
                     android:gravity="center"
                     android:text="@string/label_random"
                     android:textColor="@color/black"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
             </LinearLayout>
         </GridLayout>
@@ -249,19 +249,6 @@
                 android:textStyle="bold"
                 android:textSize="30dp"
                 android:id="@+id/btnJumlah30" />
-            <com.google.android.material.button.MaterialButton
-                android:layout_margin="5dp"
-                android:layout_columnWeight="1"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:text="40"
-                app:cornerRadius="10dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/black"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="30dp"
-                android:id="@+id/btnJumlah40" />
 
         </GridLayout>
 
@@ -278,5 +265,19 @@
             android:layout_marginTop="24dp"
             android:backgroundTint="@color/gray700"
             android:textColor="@color/white" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnJumlah40"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:text="40"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp" />
     </LinearLayout>
 </ScrollView>

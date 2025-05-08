@@ -8,9 +8,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/ic_splashcreen_logo_wrapper"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_quizz_partner_logo"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="false"
         android:theme="@style/Theme.QuizzPartner"
         tools:targetApi="31">
@@ -49,10 +49,10 @@
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
+            android:theme="@style/Theme.CustomSplashScreenTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

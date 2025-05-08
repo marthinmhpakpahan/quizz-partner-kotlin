@@ -14,13 +14,13 @@ import com.quizzpartner.R
 import com.quizzpartner.data.QuizAttemptData
 import com.quizzpartner.data.QuizQuestionData
 import com.quizzpartner.data.QuizResultData
-import com.quizzpartner.databinding.ActivityQuizBinding
+import com.quizzpartner.databinding.ActivityQuizMultipleChoiceBinding
 import com.quizzpartner.util.SessionManager
 import kotlin.random.Random
 
 class QuizMultipleChoiceActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityQuizBinding
+    private lateinit var binding: ActivityQuizMultipleChoiceBinding
 
     var indexQuestion = 0
     var maxQuestion = 0
@@ -41,7 +41,7 @@ class QuizMultipleChoiceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityQuizBinding.inflate(layoutInflater)
+        binding = ActivityQuizMultipleChoiceBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.linearLoading.visibility = View.VISIBLE
@@ -74,7 +74,13 @@ class QuizMultipleChoiceActivity : AppCompatActivity() {
             override fun onTick(millisUntilFinished: Long) {
                 var second = millisUntilFinished/1000
                 quizResultData.timeNeeded = timer - second.toInt()
-                binding.tvCountdownTimer.setText("Sisa Waktu : ${second}")
+                binding.tvCountdownTimer.setText("${second}")
+                if(second.toInt() <= 80) {
+                    setupCountdownUI("warning")
+                }
+                if(second.toInt() <= 30) {
+                    setupCountdownUI("danger")
+                }
             }
 
             override fun onFinish() {
@@ -83,17 +89,34 @@ class QuizMultipleChoiceActivity : AppCompatActivity() {
         }.start()
     }
 
+    fun setupCountdownUI(type : String) {
+        if(type.equals("warning")) {
+            binding.tvCountdownTimer.setBackgroundResource(R.drawable.progress_circle_warning)
+            binding.lottieCircleDefault.visibility = View.GONE
+            binding.lottieCircleWarning.visibility = View.VISIBLE
+            binding.lottieCircleDanger.visibility = View.GONE
+        } else if(type.equals("danger")) {
+            binding.tvCountdownTimer.setBackgroundResource(R.drawable.progress_circle_danger)
+            binding.lottieCircleDefault.visibility = View.GONE
+            binding.lottieCircleWarning.visibility = View.GONE
+            binding.lottieCircleDanger.visibility = View.VISIBLE
+        } else {
+            binding.tvCountdownTimer.setBackgroundResource(R.drawable.progress_circle)
+            binding.lottieCircleDefault.visibility = View.VISIBLE
+            binding.lottieCircleWarning.visibility = View.GONE
+            binding.lottieCircleDanger.visibility = View.GONE
+        }
+    }
+
     fun resetButtonState() {
         val choiceButtons = arrayOf(
             binding.btnChoice1, binding.btnChoice2, binding.btnChoice3, binding.btnChoice4
         )
 
         for (choiceButton in choiceButtons) {
-            choiceButton.setBackgroundColor(getColor(R.color.white))
             choiceButton.setTextColor(getColor(R.color.black))
+            choiceButton.setBackgroundResource(R.drawable.btn_quiz_option)
         }
-
-        binding.tvNextQuestionCaption.visibility = View.INVISIBLE
     }
 
     fun setupQuestion() {
@@ -133,26 +156,25 @@ class QuizMultipleChoiceActivity : AppCompatActivity() {
         for (choiceButton in choiceButtons) {
             val textButton = choiceButton.text.toString().lowercase()
             if (textButton.equals(selected.lowercase())) {
-                choiceButton.setBackgroundColor(getColor(R.color.accentOrange))
+                choiceButton.setBackgroundResource(R.drawable.btn_quiz_option_selected)
                 choiceButton.setTextColor(getColor(R.color.white))
             }
             if (textButton.equals(answer.lowercase())) {
-                choiceButton.setBackgroundColor(getColor(R.color.accentGreen))
+                choiceButton.setBackgroundResource(R.drawable.btn_quiz_option_correct)
                 choiceButton.setTextColor(getColor(R.color.white))
             }
             if (!textButton.equals(selected.lowercase()) && !textButton.equals(answer.lowercase())){
-                choiceButton.setBackgroundColor(getColor(R.color.accentRed))
+                choiceButton.setBackgroundResource(R.drawable.btn_quiz_option_wrong)
                 choiceButton.setTextColor(getColor(R.color.white))
             }
         }
 
         if (selected.lowercase().equals(answer.lowercase())) {
             correctAnswer += 1
-            binding.tvTotalCorrectAnswer.text = correctAnswer.toString()
         } else {
             incorrectAnswer += 1
-            binding.tvTotalIncorrectAnswer.text = incorrectAnswer.toString()
         }
+        binding.tvScore.text = ((correctAnswer.toFloat() / maxQuestion.toFloat()) * 100).toInt().toString()
 
         var quizAttemptData = QuizAttemptData()
         quizAttemptData.question = question
@@ -166,11 +188,9 @@ class QuizMultipleChoiceActivity : AppCompatActivity() {
     }
 
     fun nextQuestion() {
-        binding.tvNextQuestionCaption.visibility = View.VISIBLE
         object : CountDownTimer(2000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 var second = millisUntilFinished/1000
-                binding.tvNextQuestionCaption.setText("Pertanyaan selanjutnya dalam ${second} detik...")
             }
 
             override fun onFinish() {

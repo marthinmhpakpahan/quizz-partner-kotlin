@@ -8,15 +8,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.quizzpartner.R
 import com.quizzpartner.data.QuizAttemptData
 import com.quizzpartner.data.QuizQuestionData
 import com.quizzpartner.data.QuizResultData
-import com.quizzpartner.databinding.ActivityQuizBinding
 import com.quizzpartner.databinding.ActivityQuizTrueFalseBinding
 import com.quizzpartner.util.SessionManager
 import kotlin.random.Random

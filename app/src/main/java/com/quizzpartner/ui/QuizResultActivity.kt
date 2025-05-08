@@ -9,7 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.quizzpartner.R
 import com.quizzpartner.data.QuizResultData
-import com.quizzpartner.databinding.ActivityQuizBinding
 import com.quizzpartner.databinding.ActivityQuizResultBinding
 import com.quizzpartner.util.Helper
 

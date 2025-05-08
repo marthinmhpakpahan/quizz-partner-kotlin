@@ -12,15 +12,25 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:textColor="@color/black"
-            android:id="@+id/tvJudulKategori"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pilih Kategori Kuis"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp" />
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/ic_category"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:layout_marginHorizontal="10dp"
+                android:textColor="@color/black"
+                android:id="@+id/tvJudulKategori"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pilih Kategori Kuis"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+        </LinearLayout>
 
         <GridLayout
             android:layout_width="match_parent"
@@ -152,16 +162,27 @@
             </LinearLayout>
         </GridLayout>
 
-        <TextView
-            android:id="@+id/tvQuizTopic"
-            android:paddingVertical="10dp"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pilih Topik Kuis"
-            android:layout_marginTop="20dp" />
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/ic_topic"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/tvQuizTopic"
+                android:paddingVertical="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pilih Topik Kuis"/>
+        </LinearLayout>
 
         <GridLayout
             android:layout_width="match_parent"
@@ -194,16 +215,27 @@
                 android:id="@+id/btnTokohAlkitab" />
         </GridLayout>
 
-        <TextView
-            android:id="@+id/tvJumlahSoal"
-            android:paddingVertical="10dp"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Jumlah Soal: 10"
-            android:layout_marginTop="20dp" />
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/ic_total"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/tvJumlahSoal"
+                android:paddingVertical="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jumlah Soal: 10" />
+        </LinearLayout>
 
         <GridLayout
             android:layout_width="match_parent"

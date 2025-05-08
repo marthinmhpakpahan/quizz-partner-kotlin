@@ -15,40 +15,44 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
             android:padding="8dp">
+
+            <TextView
+                android:layout_marginVertical="10dp"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="Selamat Datang !"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <ImageView
                 android:id="@+id/imgAvatar"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:src="@drawable/ic_avatar"
-                android:contentDescription="Avatar"
-                android:layout_marginEnd="12dp" />
+                android:contentDescription="Avatar" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:paddingVertical="10dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/rounded_button_green"
                     android:id="@+id/tvName"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nama Pengguna"
                     android:textStyle="bold"
                     android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/tvLevel"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Level 3 - 1500 XP"
-                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
 

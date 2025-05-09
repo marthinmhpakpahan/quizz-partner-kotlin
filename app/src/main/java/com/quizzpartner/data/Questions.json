@@ -1115,103 +1115,103 @@
     "Tokoh Alkitab": [
       {
         "answer": "Timotius",
-        "question": "[...] adalah murid Paulus yang setia dan menjadi pemimpin gereja di Efesus.",
-        "options": ["Timotius", "Titus", "Barnabas"]
+        "question": "Siapakah murid Paulus yang setia dan menjadi pemimpin gereja di Efesus?",
+        "options": ["Timotius", "Titus", "Barnabas", "Yohannes"]
       },
       {
-        "answer": "Titus",
-        "question": "[...] adalah rekan pelayanan Paulus yang ditugaskan untuk melayani jemaat di Kreta.",
-        "options": ["Titus", "Timotius", "Silas"]
+        "answer": "Musa",
+        "question": "Siapakah yang memimpin bangsa Israel keluar dari tanah Mesir?",
+        "options": ["Musa", "Harun", "Yosua", "Kaleb"]
       },
       {
-        "answer": "Filemon",
-        "question": "[...] adalah orang Kristen yang menerima surat pribadi dari Paulus tentang budaknya yang melarikan diri.",
-        "options": ["Filemon", "Titus", "Yakobus"]
+        "answer": "Daud",
+        "question": "Siapakah raja Israel yang juga dikenal sebagai pemazmur?",
+        "options": ["Daud", "Salomo", "Saul", "Samuel"]
       },
       {
-        "answer": "Yakobus",
-        "question": "[...] adalah saudara Yesus yang memimpin gereja di Yerusalem.",
-        "options": ["Petrus", "Yakobus", "Yohanes"]
+        "answer": "Elia",
+        "question": "Siapakah nabi yang diangkat ke surga dengan kereta berapi?",
+        "options": ["Elia", "Elisa", "Yesaya", "Yeremia"]
+      },
+      {
+        "answer": "Abraham",
+        "question": "Siapakah yang disebut sebagai bapa orang beriman?",
+        "options": ["Abraham", "Ishak", "Yakub", "Nuh"]
+      },
+      {
+        "answer": "Petrus",
+        "question": "Siapakah murid Yesus yang menyangkal Dia tiga kali?",
+        "options": ["Petrus", "Yudas Iskariot", "Tomas", "Andreas"]
+      },
+      {
+        "answer": "Tomas",
+        "question": "Siapakah murid Yesus yang meragukan kebangkitan-Nya?",
+        "options": ["Tomas", "Yohanes", "Petrus", "Filipus"]
       },
       {
         "answer": "Yohanes",
-        "question": "[...] adalah rasul yang menulis Kitab Wahyu dan dikenal sebagai murid yang dikasihi Yesus.",
-        "options": ["Yohanes", "Petrus", "Markus"]
+        "question": "Siapakah murid Yesus yang menulis Kitab Wahyu?",
+        "options": ["Yohanes", "Petrus", "Matius", "Markus"]
       },
       {
-        "answer": "Markus",
-        "question": "[...] adalah penulis Injil kedua dan rekan pelayanan Paulus serta Barnabas.",
-        "options": ["Markus", "Lukas", "Matius"]
+        "answer": "Rut",
+        "question": "Siapakah perempuan Moab yang menjadi nenek moyang Daud?",
+        "options": ["Rut", "Naomi", "Hana", "Esther"]
       },
       {
-        "answer": "Lukas",
-        "question": "[...] adalah seorang tabib dan penulis Injil serta Kisah Para Rasul.",
-        "options": ["Lukas", "Matius", "Markus"]
+        "answer": "Esther",
+        "question": "Siapakah ratu yang menyelamatkan bangsa Yahudi dari pemusnahan?",
+        "options": ["Esther", "Abigail", "Debora", "Rut"]
       },
       {
-        "answer": "Matius",
-        "question": "[...] adalah mantan pemungut cukai yang menjadi salah satu murid Yesus dan menulis Injil pertama.",
-        "options": ["Matius", "Markus", "Lukas"]
+        "answer": "Debora",
+        "question": "Siapakah hakim perempuan yang memimpin Israel dalam perang melawan Sisera?",
+        "options": ["Debora", "Hana", "Esther", "Miryam"]
       },
       {
-        "answer": "Stefanus",
-        "question": "[...] adalah martir Kristen pertama yang dirajam sampai mati karena imannya.",
-        "options": ["Paulus", "Barnabas", "Stefanus"]
+        "answer": "Yusuf",
+        "question": "Siapakah anak Yakub yang dijual oleh saudara-saudaranya dan menjadi penguasa di Mesir?",
+        "options": ["Yusuf", "Benyamin", "Lewi", "Yehuda"]
       },
       {
-        "answer": "Filipus",
-        "question": "[...] adalah salah satu dari tujuh diaken yang memberitakan Injil kepada sida-sida Etiopia.",
-        "options": ["Filipus", "Stefanus", "Petrus"]
+        "answer": "Salomo",
+        "question": "Siapakah raja yang dikenal karena hikmatnya dan membangun Bait Allah?",
+        "options": ["Salomo", "Daud", "Rehabeam", "Yerobeam"]
       },
       {
-        "answer": "Maria Magdalena",
-        "question": "[...] adalah wanita yang pertama kali melihat Yesus bangkit dari kematian.",
-        "options": ["Maria Magdalena", "Maria ibu Yesus", "Elisabet"]
+        "answer": "Yesaya",
+        "question": "Siapakah nabi yang menubuatkan tentang Mesias dan menderita demi umat-Nya?",
+        "options": ["Yesaya", "Yeremia", "Yehezkiel", "Daniel"]
       },
       {
-        "answer": "Elisabet",
-        "question": "[...] adalah ibu dari Yohanes Pembaptis dan sepupu Maria.",
-        "options": ["Elisabet", "Marta", "Maria Magdalena"]
+        "answer": "Yeremia",
+        "question": "Siapakah nabi yang dijuluki sebagai nabi yang menangis?",
+        "options": ["Yeremia", "Yesaya", "Daniel", "Hosea"]
       },
       {
-        "answer": "Marta",
-        "question": "[...] adalah saudara Lazarus yang sibuk melayani ketika Yesus datang ke rumahnya.",
-        "options": ["Marta", "Maria", "Elisabet"]
+        "answer": "Daniel",
+        "question": "Siapakah tokoh yang selamat dari gua singa karena imannya kepada Allah?",
+        "options": ["Daniel", "Elia", "Yeremia", "Yosua"]
       },
       {
-        "answer": "Lazarus",
-        "question": "[...] adalah sahabat Yesus yang dibangkitkan dari kematian setelah empat hari di dalam kubur.",
-        "options": ["Lazarus", "Zakeus", "Bartimeus"]
+        "answer": "Barnabas",
+        "question": "Siapakah rekan pelayanan Paulus yang dikenal sebagai 'anak penghiburan'?",
+        "options": ["Barnabas", "Timotius", "Silas", "Titus"]
       },
       {
-        "answer": "Zakeus",
-        "question": "[...] adalah pemungut cukai pendek yang memanjat pohon untuk melihat Yesus.",
-        "options": ["Zakeus", "Bartimeus", "Lazarus"]
+        "answer": "Titus",
+        "question": "Siapakah murid Paulus yang ditugaskan untuk mengatur gereja di Kreta?",
+        "options": ["Titus", "Timotius", "Barnabas", "Apolos"]
       },
       {
-        "answer": "Bartimeus",
-        "question": "[...] adalah pengemis buta yang disembuhkan Yesus di dekat Yerikho.",
-        "options": ["Bartimeus", "Zakeus", "Nikodemus"]
+        "answer": "Nuh",
+        "question": "Siapakah yang membangun bahtera untuk menyelamatkan keluarganya dari air bah?",
+        "options": ["Nuh", "Abraham", "Musa", "Adam"]
       },
       {
-        "answer": "Nikodemus",
-        "question": "[...] adalah orang Farisi yang diam-diam menemui Yesus di malam hari untuk bertanya tentang kelahiran baru.",
-        "options": ["Nikodemus", "Yusuf dari Arimatea", "Gamaliël"]
-      },
-      {
-        "answer": "Yusuf dari Arimatea",
-        "question": "[...] adalah orang yang meminta tubuh Yesus dari Pilatus dan menguburkannya.",
-        "options": ["Yusuf dari Arimatea", "Nikodemus", "Petrus"]
-      },
-      {
-        "answer": "Herodes",
-        "question": "[...] adalah raja yang memerintahkan pembunuhan anak-anak di Betlehem karena takut akan kelahiran Raja orang Yahudi.",
-        "options": ["Herodes", "Pilatus", "Agabus"]
-      },
-      {
-        "answer": "Pilatus",
-        "question": "[...] adalah gubernur Romawi yang menyerahkan Yesus untuk disalibkan meskipun tidak menemukan kesalahan pada-Nya.",
-        "options": ["Pilatus", "Herodes", "Kajafas"]
+        "answer": "Samuel",
+        "question": "Siapakah nabi yang mengurapi Saul dan Daud menjadi raja?",
+        "options": ["Samuel", "Natan", "Elia", "Gad"]
       }
     ]
   },

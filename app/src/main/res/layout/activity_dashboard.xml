@@ -1,237 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="#F5F5F5">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_marginTop="20dp"
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@color/black"
+        app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- Header Profile -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_marginVertical="10dp"
-                android:textSize="30dp"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:text="Selamat Datang !"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:id="@+id/imgAvatar"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_avatar"
-                android:contentDescription="Avatar" />
-
-            <LinearLayout
-                android:paddingVertical="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:paddingVertical="5dp"
-                    android:paddingHorizontal="20dp"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@drawable/rounded_button_green"
-                    android:id="@+id/tvName"
-                    android:textColor="@color/white"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nama Pengguna"
-                    android:textStyle="bold"
-                    android:textSize="18sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Menu Buttons -->
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:rowCount="3"
-            android:layout_marginTop="26dp"
-            android:layout_marginBottom="16dp">
-
-            <RelativeLayout
-                android:background="@drawable/rounded_button"
-                android:orientation="vertical"
-                android:id="@+id/btnMulaiKuis"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="12dp" >
-                <LinearLayout
-                    android:layout_centerVertical="true"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_quiz"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp" />
-                    <TextView
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="Mulai Kuis"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:background="@drawable/rounded_button"
-                android:orientation="vertical"
-                android:id="@+id/btnStatistik"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="12dp" >
-                <LinearLayout
-                    android:layout_centerVertical="true"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_statistic"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp" />
-                    <TextView
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="Statistik"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:background="@drawable/rounded_button"
-                android:orientation="vertical"
-                android:id="@+id/btnLeaderboard"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="12dp" >
-                <LinearLayout
-                    android:layout_centerVertical="true"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_leaderboard"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp" />
-                    <TextView
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="Leaderboard"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:background="@drawable/rounded_button"
-                android:orientation="vertical"
-                android:id="@+id/btnBelajar"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="12dp" >
-                <LinearLayout
-                    android:layout_centerVertical="true"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_learn"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp" />
-                    <TextView
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="Belajar"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:background="@drawable/rounded_button"
-                android:orientation="vertical"
-                android:id="@+id/btnDailyQuiz"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="12dp" >
-                <LinearLayout
-                    android:layout_centerVertical="true"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_daily"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp" />
-                    <TextView
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="Quiz Harian"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:background="@drawable/rounded_button"
-                android:orientation="vertical"
-                android:id="@+id/btnPengaturan"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="12dp" >
-                <LinearLayout
-                    android:layout_centerVertical="true"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_setting"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp" />
-                    <TextView
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="Pengaturan"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </RelativeLayout>
-        </GridLayout>
-    </LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

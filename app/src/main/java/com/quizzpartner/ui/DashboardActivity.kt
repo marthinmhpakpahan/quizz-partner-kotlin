@@ -4,9 +4,13 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
+import com.quizzpartner.R
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.quizzpartner.databinding.ActivityDashboardBinding
+import com.quizzpartner.ui.fragment.HistoryFragment
+import com.quizzpartner.ui.fragment.HomeFragment
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -19,32 +23,18 @@ class DashboardActivity : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        sharedPreferences = getSharedPreferences("user", MODE_PRIVATE)
+        replaceFragment(HomeFragment())
+        binding.bottomNav.setOnItemSelectedListener {
+            when(it.itemId) {
+                R.id.navigation_home -> replaceFragment(HomeFragment())
+                R.id.navigation_history -> replaceFragment(HistoryFragment())
+            }
+            true
+        }
+    }
 
-        binding.tvName.setText(sharedPreferences.getString("username", ""));
-
-        binding.btnMulaiKuis.setOnClickListener {
-            startActivity(Intent(this@DashboardActivity, QuizCategoryActivity::class.java))
-            finish()
-        }
-        binding.btnStatistik.setOnClickListener {
-            Toast.makeText(this@DashboardActivity, "Maaf, fitur ini belum tersedia!", Toast.LENGTH_SHORT).show()
-        }
-        binding.btnLeaderboard.setOnClickListener {
-            Toast.makeText(this@DashboardActivity, "Maaf, fitur ini belum tersedia!", Toast.LENGTH_SHORT).show()
-        }
-        binding.btnBelajar.setOnClickListener {
-            Toast.makeText(this@DashboardActivity, "Maaf, fitur ini belum tersedia!", Toast.LENGTH_SHORT).show()
-        }
-        binding.btnDailyQuiz.setOnClickListener {
-            Toast.makeText(this@DashboardActivity, "Maaf, fitur ini belum tersedia!", Toast.LENGTH_SHORT).show()
-        }
-        binding.btnPengaturan.setOnClickListener {
-            Toast.makeText(this@DashboardActivity, "Maaf, fitur ini belum tersedia!", Toast.LENGTH_SHORT).show()
-        }
-        binding.imgAvatar.setOnClickListener {
-            startActivity(Intent(this@DashboardActivity, ProfileActivity::class.java))
-            finish()
-        }
+    private fun replaceFragment(fragment: Fragment){
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frameLayout, fragment).commit()
     }
 }

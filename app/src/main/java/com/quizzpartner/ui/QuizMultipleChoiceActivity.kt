@@ -69,6 +69,11 @@ class QuizMultipleChoiceActivity : AppCompatActivity() {
             }
         }
 
+        binding.tvTopic.setText(quizTopic)
+        if(quizTopic.equals(getString(R.string.label_tokoh_alkitab))) {
+            binding.imgQuestionCover.setImageResource(R.drawable.tokoh_alkitab)
+        }
+
         // SET TIMER
         object : CountDownTimer(timer.toLong() * 1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -87,6 +92,10 @@ class QuizMultipleChoiceActivity : AppCompatActivity() {
                 finishQuiz()
             }
         }.start()
+
+        binding.btnClose.setOnClickListener {
+            finishQuiz()
+        }
     }
 
     fun setupCountdownUI(type : String) {
@@ -123,6 +132,7 @@ class QuizMultipleChoiceActivity : AppCompatActivity() {
         resetButtonState()
         if (listQuestions != null && listQuestions?.size!! > 0) {
             var question = listQuestions?.get(indexQuestion)
+            Log.d("QuizMultipleChoice.Question", question.toString())
             binding.tvQuestionNumber.text = "Pertanyaan ${indexQuestion + 1} / ${maxQuestion}"
             if (question != null) {
                 binding.tvQuestion.text = question.question
@@ -132,16 +142,32 @@ class QuizMultipleChoiceActivity : AppCompatActivity() {
                 binding.btnChoice4.text = question.options.get(3)
 
                 binding.btnChoice1.setOnClickListener {
-                    validateAnswer(question.question, binding.btnChoice1.text.toString(), question.answer)
+                    validateAnswer(
+                        question.question,
+                        binding.btnChoice1.text.toString(),
+                        question.answer
+                    )
                 }
                 binding.btnChoice2.setOnClickListener {
-                    validateAnswer(question.question, binding.btnChoice2.text.toString(), question.answer)
+                    validateAnswer(
+                        question.question,
+                        binding.btnChoice2.text.toString(),
+                        question.answer
+                    )
                 }
                 binding.btnChoice3.setOnClickListener {
-                    validateAnswer(question.question, binding.btnChoice3.text.toString(), question.answer)
+                    validateAnswer(
+                        question.question,
+                        binding.btnChoice3.text.toString(),
+                        question.answer
+                    )
                 }
                 binding.btnChoice4.setOnClickListener {
-                    validateAnswer(question.question, binding.btnChoice4.text.toString(), question.answer)
+                    validateAnswer(
+                        question.question,
+                        binding.btnChoice4.text.toString(),
+                        question.answer
+                    )
                 }
             }
         }

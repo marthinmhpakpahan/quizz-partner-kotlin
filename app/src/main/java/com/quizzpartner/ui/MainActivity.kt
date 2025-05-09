@@ -42,19 +42,19 @@ class MainActivity : AppCompatActivity() {
             FirebaseApp.initializeApp(this)
         }
 
-        binding.btnLogin.setOnClickListener {
-            val intent = Intent(this@MainActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-        binding.btnRegister.setOnClickListener {
-            val intent = Intent(this@MainActivity, RegisterActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-        binding.btnLoginAsGuest.setOnClickListener {
-            loginUser("guest", "guest")
-        }
+//        binding.btnLogin.setOnClickListener {
+//            val intent = Intent(this@MainActivity, LoginActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//        }
+//        binding.btnRegister.setOnClickListener {
+//            val intent = Intent(this@MainActivity, RegisterActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//        }
+//        binding.btnLoginAsGuest.setOnClickListener {
+//            loginUser("guest", "guest")
+//        }
     }
 
     private fun isLoggedIn() {

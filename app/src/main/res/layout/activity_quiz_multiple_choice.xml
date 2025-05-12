@@ -5,7 +5,7 @@
     android:id="@+id/quizScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#592A8A">
+    android:background="@color/brown">
 
     <!-- Loading Screen -->
     <LinearLayout
@@ -38,7 +38,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/purple_2"
+        android:background="@color/brown"
         android:paddingVertical="30dp"
         android:paddingHorizontal="16dp">
         <!-- Close Button -->
